@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="jumbotron bg-dark mt-2 w-100">
+        <h1 class="text-center pt-3">Github Search</h1>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <p class="lead">Get any github user's information and public repository with Github Search</p>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-4">
+                <app-search-form (searchGithubUsername)="getUsernameToSearch($event)"></app-search-form>
+            </div>
+        </div>
+    </div>
+
+    <div class="card text-dark">
+        <div class="card-header">
+            <div class="card-title">
+                <h3>Github Information</h3>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-between">
+                <div class="col-md-3">
+                    <img src={{user.profilePic}} alt="" class="img-fluid rounded">
+                </div>
+                <div class="col-md-9 ">
+                    <p>Username : <strong>{{user.username}}</strong></p>
+                    <p>Repositories : </p>
+
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let repo of repos'>
+                                <td>{{repo.repoName | splitDash}}</td>
+                                <td >
+                                    <span appHighlightDescription *ngIf="checkDescription(repo); else condition1">{{repo.description}}</span>
+                                    <ng-template #condition1>No Description for this repo</ng-template>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

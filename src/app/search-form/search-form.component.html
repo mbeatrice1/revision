@@ -1,0 +1,6 @@
+<form class="form-inline" (ngSubmit)='submitUsername()' #searchForm='ngForm'>
+    <div class="form-group">
+        <input type="text" class="input form-control" placeholder="Enter username" name="username" [(ngModel)]="username"/>
+    </div>
+    <button type="submit" class="btn btn-info ml-2">Search</button>
+</form>
